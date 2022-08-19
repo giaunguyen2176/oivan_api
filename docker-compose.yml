@@ -1,0 +1,41 @@
+version: "3.7"
+
+networks:
+  oivan_api:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:12.8-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 9432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - oivan_api
+
+#  app: &app
+#    build:
+#      context: ./
+#    working_dir: /src
+#    env_file:
+#      - .env
+#    ports:
+#      - 9000:3000
+#    command: ./entrypoint.sh
+#    volumes:
+#      - ./:/src
+#    stdin_open: true
+#    tty: true
+#    networks:
+#      - oivan_api
+#    depends_on:
+#      - postgres
+
+volumes:
+  pgdata:

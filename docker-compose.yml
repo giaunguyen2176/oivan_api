@@ -19,23 +19,23 @@ services:
     networks:
       - oivan_api
 
-#  app: &app
-#    build:
-#      context: ./
-#    working_dir: /src
-#    env_file:
-#      - .env
-#    ports:
-#      - 9000:3000
-#    command: ./entrypoint.sh
-#    volumes:
-#      - ./:/src
-#    stdin_open: true
-#    tty: true
-#    networks:
-#      - oivan_api
-#    depends_on:
-#      - postgres
+  app:
+    build:
+      context: ./
+    working_dir: /src
+    env_file:
+      - .env
+    ports:
+      - 9000:3000
+    command: ./entrypoint.sh
+    volumes:
+      - ./:/src
+    stdin_open: true
+    tty: true
+    networks:
+      - oivan_api
+    depends_on:
+      - postgres
 
 volumes:
   pgdata:

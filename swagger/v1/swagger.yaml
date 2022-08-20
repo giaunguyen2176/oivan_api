@@ -1,0 +1,116 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/decode":
+    get:
+      summary: Decode an url
+      tags:
+      - Urls
+      parameters:
+      - name: key
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: valid key
+          content:
+            application/json:
+              examples:
+                empty key:
+                  value:
+                    data:
+                    success: false
+                    messages:
+                    - Couldn't find Url without a key
+                    error_code: 1
+                invalid key:
+                  value:
+                    data:
+                    success: false
+                    messages:
+                    - Url is invalid
+                    error_code: 1
+                decoded id not found:
+                  value:
+                    data:
+                    success: false
+                    messages:
+                    - Url is not found
+                    error_code: 1
+                valid key:
+                  value:
+                    data:
+                      id: 8
+                      url: http://wilkinson.org/shelby.macejkovic
+                      key: 4VOjkldQ
+                      short_url: http://localhost:9000/4VOjkldQ
+                      created_at: '2022-08-20T08:15:14.226Z'
+                      updated_at: '2022-08-20T08:15:14.226Z'
+                    meta:
+                    success: true
+                    messages: []
+                    error_code:
+  "/api/v1/encode":
+    post:
+      summary: Shorten an url
+      tags:
+      - Urls
+      parameters: []
+      responses:
+        '200':
+          description: valid url
+          content:
+            application/json:
+              examples:
+                empty url:
+                  value:
+                    data:
+                    success: false
+                    messages:
+                    - Url is not a valid URL
+                    error_code: 1
+                invalid url:
+                  value:
+                    data:
+                    success: false
+                    messages:
+                    - Url is not a valid URL
+                    error_code: 1
+                no host url:
+                  value:
+                    data:
+                    success: false
+                    messages:
+                    - Url is not a valid URL
+                    error_code: 1
+                valid url:
+                  value:
+                    data:
+                      id: 9
+                      url: http://example.com
+                      key: 3aO93m48
+                      short_url: http://localhost:9000/3aO93m48
+                      created_at: '2022-08-20T08:15:14.357Z'
+                      updated_at: '2022-08-20T08:15:14.357Z'
+                    meta:
+                    success: true
+                    messages: []
+                    error_code:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: https://github.com/giaunguyen2176/oivan_api
+servers:
+- url: "{defaultHost}"
+  variables:
+    defaultHost:
+      default: http://localhost:9000

@@ -11,7 +11,9 @@ Run the following command:
 - A localhost postgres container running at port 9432 on host machine or port 5432 inside container machine
 - A Rails application running at port 9000 on host machine or port 3000 inside container machine.
 
-Open up your web browser, and enter: `http://localhost:9000/api-docs`, a swagger documents detail how to test all the endpoints provided by the service.
+Open up your web browser, and enter: http://localhost:9000/api-docs, a swagger documents detail how to test all the endpoints provided by the service.
+
+Or if you prefer an online version deployed on Heroku: https://oivan-api.herokuapp.com/api-docs/index.html
 
 
 # 2. Potential security issue/vulnerability

@@ -43,7 +43,7 @@ This does not completely protect the service from Brute force attack, so you sho
 counter measures such as DDOS protection, API usage throttling, IP blocking, ... to minimize the change of someone cracking the code.
 
 
-#3. Scaling the service
+# 3. Scaling the service
 
 There are no collisions because the method is based on integer to hex conversion. As long as you don't change constructor 
 arguments midway, the generated output will stay unique to your salt.
@@ -53,15 +53,15 @@ scale the service in case the database reached its limit. You can scale up the d
 or it's still feasible in cost. 
 
 When scaling up is not an option anymore, you can try setting replica set, with some additional rule of 
-splitting read traffic to specific instances in the replica set, saving the bandwidth for write traffic to the master. 
+splitting read traffic to specific instances in the replica set, direct only write traffic to the master. 
 
 This may produce synchronization problem to your service, since data from the master instance may take sometime to be completely
 synced to all the replica instances. In order to combat this, we can use some intermediate caching layer such as Redis to 
 temporary serve the data to the user while waiting for the data to be available across all database instances.
 
 Caching layer such as Redis could also be used to increase the performance of the service if you want even more speed and through put.
-
-#4. The limitation
+ 
+# 4. The limitation
 
 In the future, if the SECRET SALT or ALPHABET is somehow leaked, that may exposes all your stored URLs, you need
 to change the SECRET SALT. This will makes all old URLs unreachable since old key cannot be decoded back to id using a different SECRET SALT.
